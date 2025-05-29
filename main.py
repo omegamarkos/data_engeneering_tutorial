@@ -2,6 +2,7 @@
 import pandas as pd
 import psycopg2
 from newsapi import NewsApiClient
+import os
 newsapi = NewsApiClient(api_key='30449eaef55c4cf195a595e35920efc0')
 # /v2/top-headlines
 headlines = newsapi.get_top_headlines(q='AI',
