@@ -1,0 +1,30 @@
+
+name: Runtimeeeeeeeee
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs everyday at 12:00 noon
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run main.py with Environment Variables
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER}}
+        run: python main.py
